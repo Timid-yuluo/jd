@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" fill="none">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2055D6"/>
+      <stop offset="1" stop-color="#79A7FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#g1)"/>
+  <rect x="82" y="74" width="462" height="528" rx="18" fill="white" fill-opacity="0.95"/>
+  <rect x="122" y="132" width="180" height="18" rx="6" fill="#D6E2FF"/>
+  <rect x="122" y="168" width="270" height="10" rx="5" fill="#E5EDFF"/>
+  <rect x="122" y="202" width="350" height="10" rx="5" fill="#E5EDFF"/>
+  <rect x="122" y="236" width="320" height="10" rx="5" fill="#E5EDFF"/>
+  <rect x="122" y="292" width="120" height="12" rx="6" fill="#C3D5FF"/>
+  <rect x="122" y="320" width="372" height="9" rx="4.5" fill="#EDF2FF"/>
+  <rect x="122" y="345" width="350" height="9" rx="4.5" fill="#EDF2FF"/>
+  <rect x="122" y="370" width="300" height="9" rx="4.5" fill="#EDF2FF"/>
+  <rect x="640" y="96" width="468" height="480" rx="16" fill="white" fill-opacity="0.14"/>
+  <text x="640" y="248" fill="white" font-size="44" font-family="Arial, sans-serif" font-weight="700">Resume Template</text>
+  <text x="640" y="298" fill="#EAF1FF" font-size="24" font-family="Arial, sans-serif">Professional Blue Cover</text>
+</svg>

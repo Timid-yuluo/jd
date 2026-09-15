@@ -1,0 +1,9 @@
+parameters:
+    level: 5
+    paths:
+        - app/
+    excludePaths:
+        - app/Http/Middleware/Authenticate.php
+    ignoreErrors:
+        - '#Call to an undefined method#'
+    reportUnmatchedIgnoredErrors: false

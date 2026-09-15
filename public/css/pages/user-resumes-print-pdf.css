@@ -1,0 +1,265 @@
+
+        :root {
+            color-scheme: light;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            background: #e5e7eb;
+            color: #111827;
+            font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "WenQuanYi Micro Hei", sans-serif;
+        }
+
+        .print-wrap,
+        .print-wrap * {
+            font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "WenQuanYi Micro Hei", sans-serif !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .print-wrap .ti,
+        .print-wrap .ti::before,
+        .print-wrap .ti::after {
+            font-family: "tabler-icons" !important;
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        .print-toolbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 20px;
+            background: rgba(17, 24, 39, 0.92);
+            color: #fff;
+        }
+
+        .print-toolbar h1 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .print-toolbar p {
+            margin: 0;
+            font-size: 12px;
+            color: #d1d5db;
+        }
+
+        .print-toolbar button {
+            border: 0;
+            border-radius: 8px;
+            padding: 10px 16px;
+            background: #2563eb;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .print-toolbar .btn-secondary {
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+        }
+
+        .print-toolbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .print-toolbar-status {
+            font-size: 12px;
+            color: #cbd5e1;
+            min-height: 18px;
+        }
+
+        .print-toolbar-select {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .print-toolbar-label {
+            font-size: 13px;
+            color: #d1d5db;
+            white-space: nowrap;
+        }
+
+        .print-toolbar-dropdown {
+            background: #1e293b;
+            color: #f1f5f9;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 13px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .print-toolbar-dropdown:focus {
+            border-color: #2563eb;
+        }
+
+        .print-toolbar-dropdown option {
+            background: #1e293b;
+            color: #f1f5f9;
+        }
+
+        .print-wrap {
+            padding: 24px 0 40px;
+        }
+
+        .print-page {
+            width: var(--paper-width, 210mm);
+            height: var(--paper-height, 297mm);
+            margin: 0 auto 16px;
+            background: #fff;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .print-page-inner {
+            padding: 15mm;
+            height: calc(var(--paper-height, 297mm) - 30mm);
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .print-page img {
+            max-width: 100%;
+        }
+
+        .resume-template-classic,
+        .resume-template-modern,
+        .resume-template-minimal,
+        .resume-template-timeline,
+        .resume-template-creative,
+        .resume-template-elegant {
+            max-width: none !important;
+            width: 100% !important;
+            margin: 0 !important;
+        }
+
+        .resume-template-classic > div,
+        .resume-template-minimal > div,
+        .resume-template-timeline > div,
+        .resume-template-creative > div,
+        .resume-template-elegant > div {
+            break-inside: auto;
+            page-break-inside: auto;
+        }
+
+        .resume-template-modern {
+            break-inside: auto;
+            page-break-inside: auto;
+        }
+
+        .resume-template-modern > div:first-child,
+        .resume-template-modern > div:last-child {
+            break-inside: auto;
+            page-break-inside: auto;
+        }
+
+        .resume-template-classic ul,
+        .resume-template-modern ul,
+        .resume-template-minimal ul,
+        .resume-template-timeline ul,
+        .resume-template-creative ul,
+        .resume-template-elegant ul {
+            break-inside: auto;
+            page-break-inside: auto;
+        }
+
+        .print-tip {
+            width: 210mm;
+            margin: 0 auto 12px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            background: #eff6ff;
+            color: #1e3a8a;
+            font-size: 13px;
+        }
+
+        @page {
+            size: var(--paper-width, 210mm) var(--paper-height, 297mm);
+            margin: 0;
+        }
+
+        @media print {
+            html, body {
+                background: #fff;
+            }
+
+            .print-toolbar {
+                display: none !important;
+            }
+
+            .print-tip {
+                display: none !important;
+            }
+
+            .print-wrap {
+                padding: 0;
+            }
+
+            .print-page {
+                width: var(--paper-width, 210mm) !important;
+                height: var(--paper-height, 297mm) !important;
+                margin: 0 auto !important;
+                box-shadow: none !important;
+                overflow: hidden !important;
+                page-break-after: always;
+                break-after: page;
+                display: block !important;
+            }
+
+            .print-page:last-child {
+                page-break-after: auto !important;
+                break-after: auto !important;
+            }
+
+            .print-page[data-page-mode="multi"] {
+                height: auto !important;
+                min-height: var(--paper-height, 297mm) !important;
+                overflow: visible !important;
+                page-break-after: auto !important;
+                break-after: auto !important;
+            }
+
+            .print-page[data-page-mode="multi"] .print-page-inner {
+                height: auto !important;
+                max-height: none !important;
+                overflow: visible !important;
+            }
+
+            .print-page-inner {
+                width: var(--paper-width, 210mm) !important;
+                height: calc(var(--paper-height, 297mm) - 30mm) !important;
+                padding: 15mm !important;
+                overflow: hidden !important;
+                box-sizing: border-box !important;
+            }
+
+            .resume-render-context {
+                height: auto !important;
+                max-height: none !important;
+                overflow: visible !important;
+                padding: 0 !important;
+                box-sizing: border-box !important;
+                transform-origin: top left;
+            }
+        }
+    

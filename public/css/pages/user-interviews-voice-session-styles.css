@@ -1,0 +1,718 @@
+
+/* 移动端优化 */
+.voice-interview-container {
+    max-width: 100%;
+    min-height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+}
+
+/* 语音波形动画 */
+.voice-wave {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: 36px;
+}
+
+.voice-wave-bar {
+    width: 4px;
+    background: linear-gradient(to top, #3370ff, #6694ff);
+    border-radius: 2px;
+    animation: voice-wave 0.8s ease-in-out infinite;
+}
+
+.voice-wave-bar:nth-child(1) { animation-delay: 0s; height: 20%; }
+.voice-wave-bar:nth-child(2) { animation-delay: 0.1s; height: 35%; }
+.voice-wave-bar:nth-child(3) { animation-delay: 0.2s; height: 55%; }
+.voice-wave-bar:nth-child(4) { animation-delay: 0.3s; height: 75%; }
+.voice-wave-bar:nth-child(5) { animation-delay: 0.4s; height: 100%; }
+.voice-wave-bar:nth-child(6) { animation-delay: 0.3s; height: 75%; }
+.voice-wave-bar:nth-child(7) { animation-delay: 0.2s; height: 55%; }
+.voice-wave-bar:nth-child(8) { animation-delay: 0.1s; height: 35%; }
+.voice-wave-bar:nth-child(9) { animation-delay: 0s; height: 20%; }
+
+@keyframes voice-wave {
+    0%, 100% { transform: scaleY(0.4); opacity: 0.6; }
+    50% { transform: scaleY(1); opacity: 1; }
+}
+
+.voice-wave.recording .voice-wave-bar {
+    background: linear-gradient(to top, #ff4757, #ff6b81);
+    animation-duration: 0.4s;
+    width: 5px;
+}
+
+/* 播放确认弹窗 - 初始隐藏 */
+.play-confirm-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    backdrop-filter: blur(4px);
+    padding: 20px;
+}
+
+.play-confirm-content {
+    background: white;
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+    max-width: 320px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modal-pop 0.3s ease;
+}
+
+@keyframes modal-pop {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.play-confirm-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #3370ff, #1e5af5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    color: white;
+    box-shadow: 0 8px 20px rgba(51, 112, 255, 0.4);
+}
+
+.play-confirm-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.play-confirm-text {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 16px;
+}
+
+.play-confirm-countdown {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #3370ff;
+    margin-bottom: 20px;
+    padding: 8px 16px;
+    background: #f0f7ff;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+.play-confirm-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+/* 麦克风按钮 - 完全独立样式 */
+.mic-btn-main {
+    all: unset;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #3370ff, #2f63e6);
+    color: white;
+    font-size: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 
+        0 10px 30px rgba(51, 112, 255, 0.6),
+        0 0 0 12px rgba(51, 112, 255, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    margin: 0 auto;
+    position: relative;
+}
+
+.mic-btn-main:hover {
+    transform: scale(1.08);
+    box-shadow: 
+        0 15px 40px rgba(51, 112, 255, 0.7),
+        0 0 0 16px rgba(51, 112, 255, 0.15);
+}
+
+.mic-btn-main:active {
+    transform: scale(0.95);
+}
+
+.mic-btn-main.recording {
+    background: linear-gradient(145deg, #ff4757, #ff3344);
+    box-shadow: 
+        0 10px 35px rgba(255, 71, 87, 0.6),
+        0 0 0 12px rgba(255, 71, 87, 0.25);
+    animation: mic-pulse-recording 1s ease-in-out infinite;
+}
+
+.mic-btn-main:disabled {
+    background: linear-gradient(145deg, #adb5bd, #6c757d);
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.mic-btn-main i {
+    font-size: 48px;
+    line-height: 1;
+}
+
+/* 状态提示 */
+.status-text {
+    text-align: center;
+    font-size: 1.05rem;
+    color: #4a5568;
+    margin: 0 0 1.5rem;
+    font-weight: 600;
+    min-height: 28px;
+    letter-spacing: 0.3px;
+}
+
+.status-text.recording {
+    color: #dc3545;
+    font-weight: 700;
+    animation: recording-pulse 1s ease-in-out infinite;
+}
+
+@keyframes recording-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* 对话气泡 */
+.voice-message-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    border: 1px solid #e9ecef;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.voice-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 1rem;
+    animation: message-fade-in 0.3s ease;
+}
+
+@keyframes message-fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.voice-message.ai {
+    flex-direction: row;
+}
+
+.voice-message.user {
+    flex-direction: row-reverse;
+}
+
+.voice-message-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.voice-message.ai .voice-message-avatar {
+    background: linear-gradient(135deg, #3370ff, #2f63e6);
+    color: white;
+}
+
+.voice-message.user .voice-message-avatar {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+}
+
+.voice-message-content {
+    max-width: 78%;
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.voice-message.ai .voice-message-content {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-bottom-left-radius: 4px;
+}
+
+.voice-message.user .voice-message-content {
+    background: linear-gradient(135deg, #3370ff, #2f63e6);
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+/* 播放按钮 - 完全独立样式 */
+.play-btn-main {
+    all: unset;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #e8f4ff, #d6ebff);
+    border: 2px solid #a8d0ff;
+    border-radius: 28px;
+    color: #206ee9;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 3px 8px rgba(32, 110, 233, 0.2);
+}
+
+.play-btn-main:hover {
+    background: linear-gradient(135deg, #d6ebff, #c4e0ff);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 16px rgba(32, 110, 233, 0.35);
+    border-color: #8ac0ff;
+}
+
+.play-btn-main:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* 播放中状态 */
+.play-btn-main.playing {
+    background: linear-gradient(135deg, #3370ff, #1e5af5);
+    color: white;
+    border-color: #1e5af5;
+    cursor: default;
+    box-shadow: 0 4px 15px rgba(51, 112, 255, 0.5);
+    animation: play-btn-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes play-btn-pulse {
+    0%, 100% { box-shadow: 0 4px 15px rgba(51, 112, 255, 0.5); }
+    50% { box-shadow: 0 6px 25px rgba(51, 112, 255, 0.8); }
+}
+
+.play-btn-main.playing i.spinning {
+    animation: icon-spin 0.8s linear infinite;
+}
+
+.play-btn-main i {
+    font-size: 1.1rem;
+}
+
+@keyframes icon-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* 按钮动画关键帧 */
+@keyframes mic-pulse-recording {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes play-btn-pulse {
+    0%, 100% { box-shadow: 0 4px 15px rgba(51, 112, 255, 0.5); }
+    50% { box-shadow: 0 6px 25px rgba(51, 112, 255, 0.8); }
+}
+
+/* 播放按钮波纹动画 */
+@keyframes sound-wave {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+    100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
+}
+
+.playing-wave.is-playing {
+    position: relative;
+}
+
+.playing-wave.is-playing::before,
+.playing-wave.is-playing::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 28px;
+    background: rgba(239, 68, 68, 0.4);
+    transform: translate(-50%, -50%);
+    animation: sound-wave 1.5s ease-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.playing-wave.is-playing::after {
+    animation-delay: 0.75s;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.1); }
+}
+
+/* 操作提示区域 */
+.voice-hints {
+    margin-top: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 32px;
+}
+
+.voice-hint-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.voice-hint-pill.hint-normal {
+    background: rgba(51, 112, 255, 0.08);
+    color: #3370ff;
+}
+
+.voice-hint-pill.hint-recording {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    animation: recording-pulse 1s ease-in-out infinite;
+}
+
+.voice-hint-pill.hint-processing {
+    background: rgba(51, 112, 255, 0.08);
+    color: #3370ff;
+}
+
+.voice-hint-pill.hint-warning {
+    background: rgba(255, 193, 7, 0.12);
+    color: #856404;
+    border: 1px solid rgba(255, 193, 7, 0.25);
+}
+
+.voice-hint-pill i {
+    font-size: 0.95rem;
+}
+.transcript-text {
+    font-size: 0.9rem;
+    color: #495057;
+    margin-top: 8px;
+    padding: 10px 12px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 10px;
+    border: 1px dashed rgba(40, 167, 69, 0.3);
+}
+
+/* 底部控制区 */
+.voice-controls {
+    padding: 1.75rem 1.5rem 2rem;
+    background: linear-gradient(180deg, #f0f4ff 0%, #e8efff 50%, #f8fafc 100%);
+    border-top: none;
+    text-align: center;
+    border-radius: 0 0 20px 20px;
+    position: relative;
+}
+
+.voice-controls::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #3370ff, transparent);
+    border-radius: 2px;
+}
+
+.mic-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 16px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 4px 20px rgba(51, 112, 255, 0.12), 0 1px 3px rgba(0,0,0,0.06);
+}
+
+/* 提示信息 */
+.voice-tips {
+    background: linear-gradient(135deg, #fffbeb, #fef3c7);
+    border: 1px solid #fcd34d;
+    border-radius: 14px;
+    padding: 14px 38px 14px 16px;
+    margin-bottom: 1rem;
+    font-size: 0.88rem;
+    color: #92400e;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(251, 191, 36, 0.15);
+}
+
+.voice-tips i {
+    color: #d97706;
+    font-size: 1.15rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.voice-tips .btn-close {
+    padding: 0.25rem;
+    margin: -0.25rem -0.25rem -0.25rem 0;
+    opacity: 0.5;
+}
+
+.voice-tips .btn-close:hover {
+    opacity: 1;
+}
+
+/* 评分展示 */
+.score-badge-voice {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.score-badge-voice.high {
+    background: linear-gradient(135deg, #d4edda, #c3e6cb);
+    color: #155724;
+}
+
+.score-badge-voice.medium {
+    background: linear-gradient(135deg, #fff3cd, #ffeeba);
+    color: #856404;
+}
+
+.score-badge-voice.low {
+    background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+    color: #721c24;
+}
+
+/* 移动端适配 */
+@media (max-width: 576px) {
+    .voice-interview-container {
+        min-height: calc(100vh - 120px);
+    }
+    
+    .mic-wrapper {
+        padding: 12px;
+    }
+    
+    .mic-btn-main {
+        width: 100px;
+        height: 100px;
+        font-size: 40px;
+    }
+    
+    .mic-btn-main i {
+        font-size: 40px;
+    }
+    
+    .voice-message-content {
+        max-width: 82%;
+        font-size: 0.9rem;
+        padding: 10px 14px;
+    }
+    
+    .voice-controls {
+        padding: 1.25rem 1rem 1.5rem;
+    }
+    
+    .voice-message-avatar {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+    
+    .play-btn-main {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+
+    .voice-hint-pill {
+        font-size: 0.76rem;
+        padding: 5px 12px;
+    }
+
+    .status-text {
+        font-size: 0.95rem;
+    }
+}
+
+/* 加载动画 */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(51, 112, 255, 0.2);
+    border-top: 2px solid #3370ff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 结束按钮 */
+.finish-button {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 100;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* 问题区域高亮 */
+#current-question .voice-message-content {
+    border: 2px solid #3370ff;
+    box-shadow: 0 4px 12px rgba(51, 112, 255, 0.15);
+}
+
+/* 滚动条样式 */
+.voice-message-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.voice-message-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.voice-message-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.voice-message-container::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* 从 blade 模板中提取的内联样式 */
+.voice-muted-icon {
+    opacity: 0.3;
+}
+.voice-muted-icon i {
+    font-size: 24px;
+}
+.progress-sm {
+    height: 6px;
+}
+.voice-tips-title {
+    color: #92400e;
+}
+.voice-tips-text {
+    color: #a16207;
+}
+.voice-tips-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    padding: 0;
+}
+.voice-tips-close i {
+    font-size: 14px;
+    color: #a16207;
+}
+.voice-play-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: linear-gradient(135deg, #e8f4ff, #d6ebff);
+    border: 1px solid #a8d0ff;
+    border-radius: 20px;
+    color: #206ee9;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 8px;
+    box-shadow: 0 2px 6px rgba(32,110,233,0.15);
+    font-family: inherit;
+}
+.voice-play-btn i {
+    font-size: 0.9rem;
+}
+.playing-wave-icon {
+    font-size: 1.1rem;
+}
+.loading-spinner-sm {
+    width: 14px;
+    height: 14px;
+    border-width: 2px;
+}
+.btn-confirm-cancel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 28px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: #f3f4f6;
+    color: #4b5563;
+    border: none;
+    white-space: nowrap;
+}
+.btn-confirm-ok {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 28px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(135deg, #3370ff, #1e5af5);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(51, 112, 255, 0.4);
+    white-space: nowrap;
+}

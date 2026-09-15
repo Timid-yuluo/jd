@@ -1,0 +1,57 @@
+:root {
+            --tblr-primary: var(--tblr-primary);
+        }
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .maintenance-card {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        .maintenance-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--tblr-primary)20;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--tblr-primary);
+            font-size: 2.5rem;
+        }
+        .maintenance-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+        .maintenance-message {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        .admin-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--tblr-primary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--tblr-primary)40;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .admin-link:hover {
+            background: var(--tblr-primary);
+            color: white;
+        }

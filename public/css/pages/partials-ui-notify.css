@@ -1,0 +1,100 @@
+.app-toast-wrap {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 11000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: min(380px, calc(100vw - 24px));
+}
+.app-toast {
+    border-radius: 12px;
+    border: 1px solid transparent;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.14);
+    overflow: hidden;
+    transform: translateY(-8px);
+    opacity: 0;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+}
+.app-toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+.app-toast-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-weight: 700;
+}
+.app-toast-body {
+    padding: 0 12px 12px;
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.45;
+    word-break: break-word;
+}
+.app-toast-close {
+    margin-left: auto;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    opacity: 0.6;
+    cursor: pointer;
+}
+.app-toast-close:hover {
+    opacity: 1;
+}
+.app-toast-progress {
+    height: 3px;
+    width: 100%;
+    transform-origin: left center;
+    animation: app-toast-progress linear forwards;
+}
+.app-toast--success {
+    border-color: #86efac;
+}
+.app-toast--success .app-toast-head {
+    color: #166534;
+    background: #f0fdf4;
+}
+.app-toast--success .app-toast-progress {
+    background: #22c55e;
+}
+.app-toast--error {
+    border-color: #fca5a5;
+}
+.app-toast--error .app-toast-head {
+    color: #991b1b;
+    background: #fef2f2;
+}
+.app-toast--error .app-toast-progress {
+    background: #ef4444;
+}
+.app-toast--warning {
+    border-color: #fcd34d;
+}
+.app-toast--warning .app-toast-head {
+    color: #92400e;
+    background: #fffbeb;
+}
+.app-toast--warning .app-toast-progress {
+    background: #f59e0b;
+}
+.app-toast--info {
+    border-color: #93c5fd;
+}
+.app-toast--info .app-toast-head {
+    color: #1d4ed8;
+    background: #eff6ff;
+}
+.app-toast--info .app-toast-progress {
+    background: #3b82f6;
+}
+@keyframes app-toast-progress {
+    from { transform: scaleX(1); }
+    to { transform: scaleX(0); }
+}

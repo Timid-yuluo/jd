@@ -1,0 +1,27 @@
+
+    [x-cloak] { display: none !important; }
+    .sortable-ghost { opacity: 0.4; background: #e9ecef; }
+    .sortable-chosen { box-shadow: 0 10px 24px rgba(37, 99, 235, 0.18); transform: rotate(0.5deg) scale(1.01); }
+    .sortable-drag {
+        opacity: 0.96;
+        transform: rotate(1deg) scale(1.02);
+        box-shadow: 0 18px 36px rgba(37, 99, 235, 0.18);
+    }
+    @keyframes module-flash { 0% { background-color: #dbeafe; } 100% { background-color: transparent; } }
+    .module-added { animation: module-flash 1s ease-out; }
+    @keyframes module-reordered-pop {
+        0% { transform: translateY(-6px) scale(0.99); box-shadow: 0 0 0 rgba(37, 99, 235, 0); }
+        60% { transform: translateY(0) scale(1.01); box-shadow: 0 18px 36px rgba(37, 99, 235, 0.16); }
+        100% { transform: translateY(0) scale(1); box-shadow: inherit; }
+    }
+    @keyframes module-completion-pulse {
+        0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.26); }
+        70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+    .module-reordered {
+        animation: module-reordered-pop .42s ease;
+    }
+    .module-completion-pop {
+        animation: module-completion-pulse .9s ease;
+    }

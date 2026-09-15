@@ -1,0 +1,18 @@
+.notification-content {
+    line-height: 1.8;
+}
+.notification-content p {
+    margin-bottom: 1rem;
+}
+.notification-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+.notification-content a {
+    color: var(--tblr-primary);
+    text-decoration: none;
+}
+.notification-content a:hover {
+    text-decoration: underline;
+}

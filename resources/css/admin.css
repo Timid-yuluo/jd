@@ -1,0 +1,59 @@
+@import '@tabler/core/dist/css/tabler.min.css';
+@import '@tabler/icons-webfont/dist/tabler-icons.min.css';
+
+.navbar-brand-image {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.95rem;
+}
+
+.page-wrapper {
+    min-height: 100vh;
+}
+
+.nav-link .badge {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.15rem;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 999px;
+    padding: 0;
+}
+
+.btn-outline-pink {
+    --tblr-btn-color: var(--tblr-pink);
+    --tblr-btn-border-color: rgba(var(--tblr-pink-rgb), 0.35);
+    --tblr-btn-hover-color: #fff;
+    --tblr-btn-hover-bg: var(--tblr-pink);
+    --tblr-btn-hover-border-color: var(--tblr-pink);
+}
+
+.topbar-main {
+    min-height: 3.5rem;
+}
+
+.topbar-main .btn {
+    font-weight: 600;
+}
+
+.tabler-menubar .navbar {
+    min-height: 3.5rem;
+}
+
+.tabler-menubar .navbar-nav .nav-link {
+    font-weight: 500;
+}
+
+.tabler-menubar .nav-item.active > .nav-link {
+    color: var(--tblr-primary);
+}
+
+.tabler-menubar .nav-link:hover {
+    color: var(--tblr-primary);
+}
+
+body.layout-boxed .page {
+    max-width: 1400px;
+    margin: 0 auto;
+}

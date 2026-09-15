@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" fill="none">
+  <defs>
+    <linearGradient id="g5" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EF4444"/>
+      <stop offset="1" stop-color="#FB7185"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#g5)"/>
+  <rect x="94" y="82" width="468" height="512" rx="18" fill="#FFF9FA" fill-opacity="0.95"/>
+  <rect x="136" y="138" width="180" height="18" rx="6" fill="#FECACA"/>
+  <rect x="136" y="172" width="306" height="10" rx="5" fill="#FFE4E6"/>
+  <rect x="136" y="206" width="350" height="10" rx="5" fill="#FFE4E6"/>
+  <rect x="136" y="240" width="318" height="10" rx="5" fill="#FFE4E6"/>
+  <rect x="624" y="102" width="500" height="476" rx="16" fill="white" fill-opacity="0.14"/>
+  <text x="644" y="250" fill="white" font-size="44" font-family="Arial, sans-serif" font-weight="700">Resume Template</text>
+  <text x="644" y="300" fill="#FFF1F2" font-size="24" font-family="Arial, sans-serif">Timeline Coral Cover</text>
+</svg>
